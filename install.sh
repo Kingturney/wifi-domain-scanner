@@ -1,17 +1,16 @@
 #!/data/data/com.termux/files/usr/bin/bash
-# Installs the domain scanner into Termux
-
 set -e
 
-REPO_URL="https://raw.githubusercontent.com/YOUR_USER/YOUR_REPO/main/scan_domains.sh"
-BIN_DIR="$PREFIX/bin"
-SCRIPT_NAME="scan-domains"
+REPO_RAW="https://raw.githubusercontent.com/Kingturney/domain-recon/main"
+BIN="$PREFIX/bin"
+CMD="domain-recon"
 
 echo "[*] Installing dependencies..."
-pkg update -y && pkg install -y dnsutils nmap net-tools curl git
+pkg update -y
+pkg install -y dnsutils nmap net-tools curl openssl iputils
 
-echo "[*] Downloading scanner script..."
-curl -fsSL "$REPO_URL" -o "$BIN_DIR/$SCRIPT_NAME"
-chmod +x "$BIN_DIR/$SCRIPT_NAME"
+echo "[*] Downloading tool..."
+curl -fsSL "$REPO_RAW/domain-recon.sh" -o "$BIN/$CMD"
+chmod +x "$BIN/$CMD"
 
-echo "[+] Installed. Run with: scan-domains"
+echo "[+] Installed. Run: $CMD <domain>"
