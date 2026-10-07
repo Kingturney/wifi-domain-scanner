@@ -1,16 +1,16 @@
 #!/data/data/com.termux/files/usr/bin/bash
 set -e
 
-REPO_RAW="https://raw.githubusercontent.com/Kingturney/domain-recon/main"
+REPO_RAW="https://raw.githubusercontent.com/Kingturney/wifi-domain-scanner/main"
 BIN="$PREFIX/bin"
-CMD="domain-recon"
+CMD="recon"
 
-echo "[*] Installing dependencies..."
+echo "[*] Installing dependencies (first time only)..."
 pkg update -y
-pkg install -y dnsutils nmap net-tools curl openssl iputils
+pkg install -y git dnsutils nmap curl openssl netcat-openbsd inetutils
 
-echo "[*] Downloading tool..."
-curl -fsSL "$REPO_RAW/domain-recon.sh" -o "$BIN/$CMD"
+echo "[*] Downloading scan.sh..."
+curl -fsSL "$REPO_RAW/scan.sh" -o "$BIN/$CMD"
 chmod +x "$BIN/$CMD"
 
-echo "[+] Installed. Run: $CMD <domain>"
+echo "[+] Done. Run: recon"
